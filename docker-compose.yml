@@ -1,0 +1,16 @@
+services:
+  picoshare:
+    # Use the GitHub Container Registry image built from this repo.
+    # CI automatically builds and pushes on every push to main.
+    image: ghcr.io/corynorris/picoshare:latest
+    restart: unless-stopped
+    environment:
+      - PORT=${PORT:-4001}
+      - PS_SHARED_SECRET=${PS_SHARED_SECRET}
+      - PS_BEHIND_PROXY=${PS_BEHIND_PROXY:-true}
+    command: -db /data/store.db
+    volumes:
+      - picoshare_data:/data
+
+volumes:
+  picoshare_data:
