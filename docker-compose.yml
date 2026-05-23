@@ -1,8 +1,7 @@
 services:
   picoshare:
-    # Use the GitHub Container Registry image built from this repo.
-    # CI automatically builds and pushes on every push to main.
-    image: ghcr.io/corynorris/picoshare:latest
+    build:
+      context: .
     restart: unless-stopped
     environment:
       - PORT=${PORT:-4001}
